@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PagesController;
+use App\Http\Controllers\ProductsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,15 +15,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/', [PagesController::class, 'home']);
+Route::get('/about', [PagesController::class, 'about']);
 
-Route::get('/about', function () {
-    return view('about');
-});
+// Route::get('/product', [ProductsController::class, 'index']);
+// Route::get('/product/create', [ProductsController::class, 'create']);
+// Route::get('/product/{product}', [ProductsController::class, 'show']);
+// Route::post('/product', [ProductsController::class, 'store']);
+// Route::delete('/product/{product}', [ProductsController::class, 'destroy']);
+// Route::get('/product/{product}/edit', [ProductsController::class, 'edit']);
+// Route::patch('/product/{product}', [ProductsController::class, 'update']);
 
-Route::get('/product', function () {
-    $name = 'Edi Yasa';
-    return view('product', ['name' => $name]);
-});
+Route::resource('product', ProductsController::class);
