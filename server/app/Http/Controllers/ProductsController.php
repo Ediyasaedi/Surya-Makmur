@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 use App\Models\Product;
+use App\Http\Resources\ProductResource;
 
 class ProductsController extends Controller
 {
@@ -19,6 +20,12 @@ class ProductsController extends Controller
         // $products = DB::table('products')->get();
         $products = Product::all();
         return view('products.index', compact('products'));
+    }
+
+    public function indexapi()
+    {
+        $products = Product::all();
+        return ProductResource::collection($products);
     }
 
     /**
