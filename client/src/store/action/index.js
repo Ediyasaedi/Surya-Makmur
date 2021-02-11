@@ -16,8 +16,8 @@ export const getProducts = (payload) => {
     axios
       .get(`${baseUrl}/api/products`)
       .then(({ data }) => {
-        console.log(data, "<< di action");
-        dispatch(setProducts(data));
+        console.log(typeof data["data"], "<<< di action");
+        dispatch(setProducts(data["data"]));
       })
       .catch(console.log);
   };
